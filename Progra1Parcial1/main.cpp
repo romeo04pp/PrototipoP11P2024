@@ -83,7 +83,7 @@ void llamaCiclo()
 }
 //termina llamaCiclo
 
-//para aleatorios
+//para aleatorios del monto de ventas
 int busquedaAleatorios(int minimo, int maximo)
 {
     return minimo + rand() / (RAND_MAX / (maximo - minimo + 1) + 1);
@@ -95,26 +95,26 @@ void llenarMatriz(float matriz[NUMERO_EMPRESAS][NUMERO_INGRESOS + 1])
     for (y = 0; y < NUMERO_EMPRESAS; y++)
     {
         float suma = 0;
-        int calificacion = 0;
+        int monto_ventas = 0; //calificacion
         for (x = 0; x < NUMERO_EMPRESAS; x++)
         {
-            if (x == 0 || x == 3)  //primer parcial
+            if (x == 0 || x == 3)  //año 2015 y 2018
             {
-                calificacion = busquedaAleatorios(MIN_INGRESOS, 20);
-            } else if (x == 1)  //segundo parcial
+                monto_ventas = busquedaAleatorios(MIN_INGRESOS, MAX_INGRESOS);
+            } else if (x == 1)  //año 2016
             {
-                calificacion = busquedaAleatorios(MIN_INGRESOS, 25);
-            } else if (x == 2)  //examen final
+                monto_ventas = busquedaAleatorios(MIN_INGRESOS, MAX_INGRESOS);
+            } else if (x == 2)  //año 2017
             {
-                calificacion = busquedaAleatorios(MIN_INGRESOS, 35);
+                monto_ventas = busquedaAleatorios(MIN_INGRESOS, MAX_INGRESOS);
             }
-            suma += (float)calificacion;
-            matriz[y][x] = calificacion;
-            calificacion=0;
+            suma += (float)monto_ventas;
+            matriz[y][x] = monto_ventas;
+            monto_ventas=0;
         }
         // Agregar promedio
 
-        matriz[y][NUMERO_NOTAS] = suma;
+        matriz[y][NUMERO_EMPRESAS] = suma;
     }
 }
 
@@ -123,7 +123,7 @@ void imprimirMatrizLinea()
     int x;
 
     cout << "+--------";
-    for (x = 0; x < NUMERO_NOTAS + 1; x++)
+    for (x = 0; x < NUMERO_EMPRESAS + 1; x++)
     {
         cout << "+---------";
     }
