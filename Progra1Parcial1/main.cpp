@@ -11,7 +11,7 @@ using namespace std;
 
 #define NUMERO_EMPRESAS 5 //alumnos
 #define NUMERO_AÑOS 5 //materias
-#define NUMERO_INGRESOS //notas
+#define NUMERO_INGRESOS 5 //notas
 #define MAX_INGRESOS 1000000 //notas max
 #define MIN_INGRESOS 1000 //notas min
 #define MAXIMA_LONGITUD_CADENA 100 //igual
@@ -60,15 +60,15 @@ void llamaCiclo()
         promedio_camara_transporte = imprimirMatriz(matriz_camara_transporte, empresas, "Camara de Transporte");
         if (promedio_camara_industria > promedio_camara_construccion && promedio_camara_industria > promedio_camara_transporte)
         {
-            cout << " La industria con mayor monto de ventas es : " << "Camara de Industria" << " Promedio: " << promedio_camara_industria << endl;
+            cout << " La industria con mayor monto de ventas es : " << "Camara de Industria" << " Promedio: Q " << promedio_camara_industria << endl;
         } else
         if (promedio_camara_construccion > promedio_camara_industria && promedio_camara_construccion > promedio_camara_transporte)
         {
-            cout << " La industria con mayor monto de ventas es : " << "Camara de Construccion" << " Promedio: " << promedio_camara_construccion << endl;
+            cout << " La industria con mayor monto de ventas es : " << "Camara de Construccion" << " Promedio: Q " << promedio_camara_construccion << endl;
         } else
         if (promedio_camara_transporte> promedio_camara_construccion && promedio_camara_transporte > promedio_camara_industria)
         {
-            cout << " La industria con mayor monto de ventas es : : " << "Camara de Transporte" << " Promedio: " << promedio_camara_transporte << endl;
+            cout << " La industria con mayor monto de ventas es : : " << "Camara de Transporte" << " Promedio: Q " << promedio_camara_transporte << endl;
         } else
         {
             cout << " Algunas industrias tienen el mismo promedio " << endl << endl;
@@ -101,7 +101,7 @@ void llenarMatriz(float matriz[NUMERO_EMPRESAS][NUMERO_INGRESOS + 1])
             if (x == 0 || x == 3)  //año 2015 y 2018
             {
                 monto_ventas = busquedaAleatorios(MIN_INGRESOS, MAX_INGRESOS);
-            } else if (x == 1)  //año 2016
+            } else if (x == 1 || x == 4)  //año 2016
             {
                 monto_ventas = busquedaAleatorios(MIN_INGRESOS, MAX_INGRESOS);
             } else if (x == 2)  //año 2017
@@ -132,8 +132,7 @@ void imprimirMatrizLinea()
 float imprimirMatriz(float matriz[NUMERO_EMPRESAS][NUMERO_INGRESOS + 1], char empresas[NUMERO_EMPRESAS][MAXIMA_LONGITUD_CADENA], string nombreIndustria) //nombrefacultad
 {
     //Funciòn que imprime la matriz en pantalla y realizando los calculos necesarios del promedio
-    int y, x;
-
+    int y, x, an=4;
     float promedioMayor = matriz[0][NUMERO_INGRESOS];
     float promedioMenor = matriz[0][NUMERO_INGRESOS];
     float totalGeneral = 0;
@@ -148,7 +147,8 @@ float imprimirMatriz(float matriz[NUMERO_EMPRESAS][NUMERO_INGRESOS + 1], char em
     cout << setw(9) << "Empresa";
     for (x = 0; x < NUMERO_INGRESOS; x++)
     {
-        cout << setw(9) << "Año" << x + 1;
+        cout << setw(9) << "201" << an;
+        an++;
     }
     cout << setw(8) << "Total" << endl;
     imprimirMatrizLinea();
@@ -177,8 +177,8 @@ float imprimirMatriz(float matriz[NUMERO_EMPRESAS][NUMERO_INGRESOS + 1], char em
         imprimirMatrizLinea();
     }
     promedioGeneral = totalGeneral / NUMERO_EMPRESAS;
-    cout << "Monto de ventas mayor: " << setw(10) << empresaPromedioMayor <<  setw(10) << promedioMayor << endl;
-    cout << "Monto de ventas menor: " << setw(10) << empresaPromedioMenor <<  setw(10) << promedioMenor << endl;
-    cout << "Monto de ventas promedio : " << setw(10) <<  promedioGeneral << endl << endl;
+    cout << "Monto de ventas mayor: " << setw(10) << empresaPromedioMayor <<  setw(10) << " Q " << promedioMayor << endl;
+    cout << "Monto de ventas menor: " << setw(10) << empresaPromedioMenor <<  setw(10) << " Q " << promedioMenor << endl;
+    cout << "Monto de ventas promedio : " << setw(10) << " Q " <<  promedioGeneral << endl << endl;
     return promedioGeneral;
 }
