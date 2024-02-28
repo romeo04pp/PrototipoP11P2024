@@ -129,56 +129,56 @@ void imprimirMatrizLinea()
     }
     cout << "+\n";
 }
-float imprimirMatriz(float matriz[NUMERO_ALUMNOS][NUMERO_NOTAS + 1], char alumnos[NUMERO_ALUMNOS][MAXIMA_LONGITUD_CADENA], string nombreFacultad)
+float imprimirMatriz(float matriz[NUMERO_EMPRESAS][NUMERO_INGRESOS + 1], char empresas[NUMERO_EMPRESAS][MAXIMA_LONGITUD_CADENA], string nombreIndustria) //nombrefacultad
 {
     //Funciòn que imprime la matriz en pantalla y realizando los calculos necesarios del promedio
     int y, x;
 
-    float promedioMayor = matriz[0][NUMERO_NOTAS];
-    float promedioMenor = matriz[0][NUMERO_NOTAS];
+    float promedioMayor = matriz[0][NUMERO_INGRESOS];
+    float promedioMenor = matriz[0][NUMERO_INGRESOS];
     float totalGeneral = 0;
     float promedioGeneral = 0;
-    char alumnoPromedioMayor[MAXIMA_LONGITUD_CADENA];
-    char alumnoPromedioMenor[MAXIMA_LONGITUD_CADENA];
-    memcpy(alumnoPromedioMayor, alumnos[0], MAXIMA_LONGITUD_CADENA);
-    memcpy(alumnoPromedioMenor, alumnos[0], MAXIMA_LONGITUD_CADENA);
-    cout << nombreFacultad << endl;
-    cout << "(Nota1)=>Primer Parcial  (Nota2)=>Segundo Parcial (Nota3)=>Final (Nota4)=>Actividades" << endl;
+    char empresaPromedioMayor[MAXIMA_LONGITUD_CADENA];
+    char empresaPromedioMenor[MAXIMA_LONGITUD_CADENA];
+    memcpy(empresaPromedioMayor, empresas[0], MAXIMA_LONGITUD_CADENA);
+    memcpy(empresaPromedioMenor, empresas[0], MAXIMA_LONGITUD_CADENA);
+    cout << nombreIndustria << endl;
+    cout << "(AÑO 2015)    (AÑO 2016)    (AÑO 2017)    (AÑO 2018)" << endl;
     imprimirMatrizLinea();
-    cout << setw(9) << "Alumno";
-    for (x = 0; x < NUMERO_NOTAS; x++)
+    cout << setw(9) << "Empresa";
+    for (x = 0; x < NUMERO_INGRESOS; x++)
     {
-        cout << setw(9) << "Nota" << x + 1;
+        cout << setw(9) << "Año" << x + 1;
     }
-    cout << setw(8) << "Tot" << endl;
+    cout << setw(8) << "Total" << endl;
     imprimirMatrizLinea();
-    for (y = 0; y < NUMERO_ALUMNOS; y++)
+    for (y = 0; y < NUMERO_EMPRESAS; y++)
     {
-        cout << "!" << setw(8) << alumnos[y] << "!";
+        cout << "!" << setw(8) << empresas[y] << "!";
         float suma = 0;
-        for (x = 0; x < NUMERO_NOTAS; x++)
+        for (x = 0; x < NUMERO_EMPRESAS; x++)
         {
-            int calificacion = matriz[y][x];
-            cout << setw(9) << calificacion << "!";
+            int monto_ventas = matriz[y][x];
+            cout << setw(9) << monto_ventas << "!";
         }
-        float promedio = matriz[y][NUMERO_NOTAS];
-        totalGeneral += matriz[y][NUMERO_NOTAS];
+        float promedio = matriz[y][NUMERO_INGRESOS];
+        totalGeneral += matriz[y][NUMERO_INGRESOS];
         if (promedio > promedioMayor)
         {
             promedioMayor = promedio;
-            memcpy(alumnoPromedioMayor, alumnos[y], MAXIMA_LONGITUD_CADENA);
+            memcpy(empresaPromedioMayor, empresas[y], MAXIMA_LONGITUD_CADENA);
         }
         if (promedio < promedioMenor)
         {
             promedioMenor = promedio;
-            memcpy(alumnoPromedioMenor, alumnos[y], MAXIMA_LONGITUD_CADENA);
+            memcpy(empresaPromedioMenor, empresas[y], MAXIMA_LONGITUD_CADENA);
         }
         cout << setw(9) << fixed << setprecision(2) << promedio << "!" << endl;
         imprimirMatrizLinea();
     }
-    promedioGeneral = totalGeneral / NUMERO_ALUMNOS;
-    cout << "Nota mayor: " << setw(10) << alumnoPromedioMayor <<  setw(10) << promedioMayor << endl;
-    cout << "Nota menor: " << setw(10) << alumnoPromedioMenor <<  setw(10) << promedioMenor << endl;
-    cout << "Nota prom : " << setw(10) <<  promedioGeneral << endl << endl;
+    promedioGeneral = totalGeneral / NUMERO_EMPRESAS;
+    cout << "Monto de ventas mayor: " << setw(10) << empresaPromedioMayor <<  setw(10) << promedioMayor << endl;
+    cout << "Monto de ventas menor: " << setw(10) << empresaPromedioMenor <<  setw(10) << promedioMenor << endl;
+    cout << "Monto de ventas promedio : " << setw(10) <<  promedioGeneral << endl << endl;
     return promedioGeneral;
 }
